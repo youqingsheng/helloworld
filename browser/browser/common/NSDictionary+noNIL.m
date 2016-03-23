@@ -30,7 +30,7 @@
     }
     
     NSLog(@"%@ 检测出错", aKey);
-    return nil;
+    return @"";
 }
 -(NSArray*)getNSArrayObjectForKey:(id <NSCopying>)aKey {
     NSArray* obj = [self objectForKey:aKey];
@@ -86,7 +86,8 @@
         return obj;
     }
     
-    return nil;
+    return @"";
+    
 }
 -(NSArray*)getNSArrayObjectForKey:(id <NSCopying>)aKey {
     NSArray* obj = [self objectForKey:aKey];

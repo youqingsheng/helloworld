@@ -256,10 +256,16 @@ static MyServerRequestManager *serverRequestManager = nil;
 #pragma mark 排行榜 应用/游戏
 - (void)requestRankingAppGameList:(TagType)tagType rankingType:(RankingType)rankingType pageCount:(NSInteger)pageCount isUseCache:(BOOL)isUseCache userData:(id)userData
 {
+    isUseCache = NO;
     NSString *path = @"/app/rank";
     NSString *parameter = [NSString stringWithFormat:@"page=%ld&tag=%@&rankType=%@",(long)pageCount,(tagType==tagType_app)?@"app":@"game",[self getRankType:rankingType]];
     NSString *cacheStr = [self getCacheURLString:path httpParameter:parameter];
     NSString *reqStr = [self getRequestURLString:path httpParameter:parameter];
+    
+//    NSString *path = @"/rank/index";
+//    NSString *parameter = [NSString stringWithFormat:@"page=%ld&type=%@",(long)pageCount,(tagType==tagType_app)?@"app":@"game"];
+//    NSString *cacheStr = [self getReqString:path httpParameter:parameter];
+//    NSString *reqStr = cacheStr;
     
     // 使用缓存
     if (isUseCache) {
@@ -2092,6 +2098,12 @@ static MyServerRequestManager *serverRequestManager = nil;
     
 }
 #pragma mark - Utility
+
+- (NSString *)getReqString:(NSString *)path httpParameter:(NSString *)parameter
+{
+    return [NSString stringWithFormat:@"%@%@?%@",HEAD_REQSTR,path,parameter];
+}
+
 
 - (NSString *)getCacheURLString:(NSString *)path httpParameter:(NSString *)parameter
 {

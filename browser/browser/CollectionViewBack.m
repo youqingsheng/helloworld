@@ -29,11 +29,11 @@
         [self addSubview:imageView];
         
         label = [UILabel new];
-        label.text = @"努力加载中，请稍后...";
+        label.text = @"正在加载中";
         label.backgroundColor = [UIColor clearColor];
-        label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont systemFontOfSize:12.0f];
-        label.textColor = [UIColor colorWithRed:78.0/255.0 green:78.0/255.0 blue:78.0/255.0 alpha:1];
+        label.textAlignment = NSTextAlignmentLeft;
+        label.font = [UIFont systemFontOfSize:14.0f];
+        label.textColor = [UIColor colorWithRed:59.0/255.0 green:59.0/255.0 blue:59.0/255.0 alpha:1];
         [self addSubview:label];
     }
     return self;
@@ -44,8 +44,8 @@
     [super layoutSubviews];
     
     imageview2.frame = CGRectMake((self.bounds.size.width-imageview2.image.size.width/2)/2, (self.bounds.size.height-imageview2.image.size.height/2)/2-(imageview2.image.size.height/2+Spacing+FontSize)/2, imageview2.image.size.width/2, imageview2.image.size.height/2);
-    imageView.frame = imageview2.frame;
-    label.frame = CGRectMake(0, imageview2.frame.origin.y+imageview2.frame.size.height+Spacing, self.bounds.size.width, FontSize);
+    imageView.frame = CGRectMake(imageview2.frame.origin.x, imageview2.frame.origin.y+imageview2.frame.size.height+Spacing, 17, 17.0);//imageview2.frame;
+    label.frame = CGRectMake(imageView.frame.origin.x + 22, imageview2.frame.origin.y+imageview2.frame.size.height+Spacing, self.bounds.size.width, FontSize);
 }
 //添加快用菊花动画
 - (void)start{
@@ -163,7 +163,7 @@
     if (self) {
         // Initialization code
         self.backgroundColor = [UIColor whiteColor];
-        _animation = [[AnimationView alloc] init];
+        _animation = [[BackAnimation alloc] init];
         _animation.hidden = YES;
         [self addSubview:_animation];
         
@@ -189,7 +189,7 @@
 - (void)click{
     _failView.hidden = YES;
     _animation.hidden = NO;
-//    [_animation start];
+    [_animation start];
     if (_tap) _tap();
     
 }
@@ -203,15 +203,15 @@
     if (status == Loading){
         _failView.hidden = YES;
         _animation.hidden = NO;
-//        [_animation start];
+        [_animation start];
         self.alpha = 1.0f;
     }else if (status == Failed){
         _failView.hidden = NO;
-//        [_animation stop];
+        [_animation stop];
         _animation.hidden = YES;
         self.alpha = 1.0f;
     }else if (status == Hidden){
-//        [_animation stop];
+        [_animation stop];
         _animation.hidden = YES;
         _failView.hidden = YES;
         [UIView animateWithDuration:0.3f animations:^{
@@ -225,7 +225,7 @@
 - (void)reloading
 {
     if (_status == Loading) {
-        [_animation->gifView startGif];
+//        [_animation->gifView startGif];
     }
 }
 

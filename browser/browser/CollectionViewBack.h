@@ -69,8 +69,8 @@ typedef enum {
 
 @interface CollectionViewBack : UIView{
     tap _tap;
-//    BackAnimation * _animation;
-    AnimationView * _animation;
+    BackAnimation * _animation;
+//    AnimationView * _animation;
     BackFail * _failView;
 }
 

@@ -4306,8 +4306,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = NO;
-				PROVISIONING_PROFILE = "1ec84383-b700-43c9-8eb1-a5f50a67bd67";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1ec84383-b700-43c9-8eb1-a5f50a67bd67";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 arm64";
 			};
@@ -4341,8 +4341,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "1ec84383-b700-43c9-8eb1-a5f50a67bd67";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1ec84383-b700-43c9-8eb1-a5f50a67bd67";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 arm64";
@@ -4395,8 +4395,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yyb.yybtest;
 				PRODUCT_MODULE_NAME = "应用宝贝";
 				PRODUCT_NAME = "应用宝贝";
-				PROVISIONING_PROFILE = "1ec84383-b700-43c9-8eb1-a5f50a67bd67";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1ec84383-b700-43c9-8eb1-a5f50a67bd67";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "browser/IPhone/HomePageControls/Find/browser-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -4452,8 +4452,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yyb.yybtest;
 				PRODUCT_MODULE_NAME = "应用宝贝";
 				PRODUCT_NAME = "应用宝贝";
-				PROVISIONING_PROFILE = "1ec84383-b700-43c9-8eb1-a5f50a67bd67";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1ec84383-b700-43c9-8eb1-a5f50a67bd67";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "browser/IPhone/HomePageControls/Find/browser-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
