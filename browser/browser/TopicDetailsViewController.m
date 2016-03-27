@@ -335,7 +335,7 @@ BOOL _deceler_topic;
     if (!appdigidArray) appdigidArray = [NSMutableArray array];
     
     for (PublicCollectionCell * cell in self.myCollectionView.visibleCells) {
-        [appidArray addObject:cell.appID];
+//        [appidArray addObject:cell.appID];
         [appdigidArray addObject:cell.appdigitalid];
     }
     [[ReportManage instance] reportAppBaoGuang:SPECIAL_APP([infoDic objectForKey:SPECIAL_ID], (long)-1) appids:appidArray digitalIds:appdigidArray];

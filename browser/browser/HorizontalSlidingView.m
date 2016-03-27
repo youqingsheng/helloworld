@@ -317,7 +317,7 @@ BOOL _deceler_horizen;
     if (!appdigidArray) appdigidArray = [NSMutableArray array];
     
     for (HorizontalAppCellView * cell in myCollectionView.visibleCells) {
-        [appidArray addObject:cell.appID];
+//        [appidArray addObject:cell.appID];
         [appdigidArray addObject:cell.appdigitalid];
     }
     

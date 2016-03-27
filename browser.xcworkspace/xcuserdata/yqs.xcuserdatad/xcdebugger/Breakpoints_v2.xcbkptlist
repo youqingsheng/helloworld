@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "browser/browser/MyServerRequestManager.m"
+            timestampString = "480741805.450305"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "436"
+            endingLineNumber = "436"
+            landmarkName = "-requestCategoryAppGameList:pageCount:isUseCache:userData:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__83-[MyServerRequestManager requestCategoryAppGameList:pageCount:isUseCache:userData:]_block_invoke_2.263"
+                  moduleName = "&#x5e94;&#x7528;&#x5b9d;&#x8d1d;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yqs/Desktop/yybb/helloworld/browser/browser/MyServerRequestManager.m"
+                  timestampString = "480743622.966521"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "436"
+                  endingLineNumber = "436"
+                  offsetFromSymbolStart = "34">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__83-[MyServerRequestManager requestCategoryAppGameList:pageCount:isUseCache:userData:]_block_invoke_3.264"
+                  moduleName = "&#x5e94;&#x7528;&#x5b9d;&#x8d1d;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yqs/Desktop/yybb/helloworld/browser/browser/MyServerRequestManager.m"
+                  timestampString = "480743622.967021"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "437"
+                  endingLineNumber = "437"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

@@ -438,7 +438,7 @@ BOOL _deceler_classification;
     for (UICollectionViewCell *obj in cellArray) {
         if (obj.tag == 203) {
             PublicCollectionCell *cell = (PublicCollectionCell*)obj;
-            [appIds addObject:cell.appID];
+//            [appIds addObject:cell.appID];
             [digitalIds addObject:cell.appdigitalid];
         }
     }

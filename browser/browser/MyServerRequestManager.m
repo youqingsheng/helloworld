@@ -257,15 +257,15 @@ static MyServerRequestManager *serverRequestManager = nil;
 - (void)requestRankingAppGameList:(TagType)tagType rankingType:(RankingType)rankingType pageCount:(NSInteger)pageCount isUseCache:(BOOL)isUseCache userData:(id)userData
 {
     isUseCache = NO;
-    NSString *path = @"/app/rank";
-    NSString *parameter = [NSString stringWithFormat:@"page=%ld&tag=%@&rankType=%@",(long)pageCount,(tagType==tagType_app)?@"app":@"game",[self getRankType:rankingType]];
-    NSString *cacheStr = [self getCacheURLString:path httpParameter:parameter];
-    NSString *reqStr = [self getRequestURLString:path httpParameter:parameter];
+//    NSString *path = @"/app/rank";
+//    NSString *parameter = [NSString stringWithFormat:@"page=%ld&tag=%@&rankType=%@",(long)pageCount,(tagType==tagType_app)?@"app":@"game",[self getRankType:rankingType]];
+//    NSString *cacheStr = [self getCacheURLString:path httpParameter:parameter];
+//    NSString *reqStr = [self getRequestURLString:path httpParameter:parameter];
     
-//    NSString *path = @"/rank/index";
-//    NSString *parameter = [NSString stringWithFormat:@"page=%ld&type=%@",(long)pageCount,(tagType==tagType_app)?@"app":@"game"];
-//    NSString *cacheStr = [self getReqString:path httpParameter:parameter];
-//    NSString *reqStr = cacheStr;
+    NSString *path = @"/rank/index";
+    NSString *parameter = [NSString stringWithFormat:@"page=%ld&type=%@",(long)pageCount,(tagType==tagType_app)?@"app":@"game"];
+    NSString *cacheStr = [self getReqString:path httpParameter:parameter];
+    NSString *reqStr = cacheStr;
     
     // 使用缓存
     if (isUseCache) {
@@ -355,6 +355,7 @@ static MyServerRequestManager *serverRequestManager = nil;
 #pragma mark 分类 应用/游戏
 - (void)requestCategoryAppGameList:(TagType)tagType pageCount:(NSInteger)pageCount isUseCache:(BOOL)isUseCache userData:(id)userData
 {
+    isUseCache = NO;
     NSString *path = @"/category/getCategorys";
     NSString *parameter = [NSString stringWithFormat:@"type=%@",(tagType==tagType_app)?@"app":@"game"];
     NSString *cacheStr = [self getCacheURLString:path httpParameter:parameter];
@@ -1118,6 +1119,8 @@ static MyServerRequestManager *serverRequestManager = nil;
 #pragma mark 限时免费
 - (void)requestLimitFreeList:(NSInteger)pageCount isUseCache:(BOOL)isUseCache userData:(id)userData
 {
+    isUseCache = NO;
+//    http://www.baby.com/limitedFree/list?cry=page=1
     NSString *path = @"/limitedFree/list";
     NSString *parameter = [NSString stringWithFormat:@"page=%ld",(long)pageCount];
     NSString *cacheStr = [self getCacheURLString:path httpParameter:parameter];
@@ -1490,6 +1493,7 @@ static MyServerRequestManager *serverRequestManager = nil;
 #pragma mark 轮播图
 - (void)requestCarouselDiagrams:(lunBoType)type isUseCache:(BOOL)isUseCache userData:(id)userData
 {
+    isUseCache = NO;
     NSString *path = @"/gyrate/list";
     NSString *parameter = [NSString stringWithFormat:@"type=%@",[self getLunBoTypeName:type]];
     NSString *cacheStr = [self getCacheURLString:path httpParameter:parameter];
@@ -2107,12 +2111,14 @@ static MyServerRequestManager *serverRequestManager = nil;
 
 - (NSString *)getCacheURLString:(NSString *)path httpParameter:(NSString *)parameter
 {
-    return [NSString stringWithFormat:@"%@%@?cry=%@",HEAD_REQSTR,path,parameter];
+    return [NSString stringWithFormat:@"%@%@?%@",HEAD_REQSTR,path,parameter];
+//    return [NSString stringWithFormat:@"%@%@?cry=%@",HEAD_REQSTR,path,parameter];
 }
 
 - (NSString *)getRequestURLString:(NSString *)path httpParameter:(NSString *)parameter
 {
-    return [NSString stringWithFormat:@"%@%@?cry=%@",HEAD_REQSTR,path,[self getDESString:parameter]];
+    return [NSString stringWithFormat:@"%@%@?%@",HEAD_REQSTR,path,parameter];
+//    return [NSString stringWithFormat:@"%@%@?cry=%@",HEAD_REQSTR,path,[self getDESString:parameter]];
 }
 
 - (NSString *)getDESString:(NSString *)string{

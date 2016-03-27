@@ -380,8 +380,8 @@
 
 - (BOOL)verifyAppDic:(id)obj
 { // 是否是一个有效的app字典
-    if (IS_NSDICTIONARY(obj) &&
-        [obj getNSStringObjectForKey:APPDIGITALID] &&
+    if (IS_NSDICTIONARY(obj)){
+        if([obj getNSStringObjectForKey:APPDIGITALID] &&
         [obj getNSStringObjectForKey:APPID] &&
         [obj getNSStringObjectForKey:APPSIZE_MY] &&
         [obj getNSStringObjectForKey:APPNAME] &&
@@ -399,8 +399,9 @@
         [obj getNSStringObjectForKey:APPOMSERTTIME] &&
         [obj getNSStringObjectForKey:APPPRICE] &&
         [obj getNSStringObjectForKey:INSTALLTYPE]) {
-        
-        return YES;
+            
+            return YES;
+        }
     }
     
     return NO;
