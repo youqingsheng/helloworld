@@ -212,7 +212,7 @@
     }
 
     [self checkPraiseButtonState];
-    [detailTableViewController prepareAppContent:[appDic objectForKey:@"appid"] pos:[NSString stringWithFormat:@"%d",1]];
+    [detailTableViewController prepareAppContent:[appDic objectForKey:@"appdigitalid"] pos:[NSString stringWithFormat:@"%d",1]];
     AppTestTableViewController *testDetail  = [detailTableViewController getTestTableViewController];
 
     testDetail.testDetailDelegate = self;

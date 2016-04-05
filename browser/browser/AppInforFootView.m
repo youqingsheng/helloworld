@@ -107,10 +107,12 @@
     
     NSDictionary *tmpDic = [dataDic objectForKey:@"data"];
     typeLabel.text  = [NSString stringWithFormat:@"类型 %@",[tmpDic objectForKey:@"category"]];
-    sizeLabel.text = [NSString stringWithFormat:@"大小 %@M",[tmpDic objectForKey:@"appdisplaysize"]];
-    deviceLabel.text =  [NSString stringWithFormat:@"设备 %@",[tmpDic objectForKey:@"appdevice"]];
+    NSString *size = [tmpDic objectForKey:@"appdisplaysize"];
+    NSString *mSize = [NSString stringWithFormat:@"%.2f",size.integerValue/1024.0/1024.0];
+    sizeLabel.text = [NSString stringWithFormat:@"大小 %@M",mSize];
+    deviceLabel.text =  [NSString stringWithFormat:@"设备 %@",[tmpDic objectForKey:@"appsupportdevice"]];
     systemLabel.text =  [NSString stringWithFormat:@"系统 %@及以上",[tmpDic objectForKey:@"appminosver"]];
-    timeLabel.text =  [NSString stringWithFormat:@"时间 %@",[tmpDic objectForKey:@"appupdatetime"]];
+    timeLabel.text =  [NSString stringWithFormat:@"时间 %@",[tmpDic objectForKey:@"appupdatetime"]];//appinserttime
     versionLabel.text  =  [NSString stringWithFormat:@"版本 %@",[tmpDic objectForKey:@"displayversion"]?[tmpDic objectForKey:@"displayversion"]:[tmpDic objectForKey:@"appversion"]];
 }
 

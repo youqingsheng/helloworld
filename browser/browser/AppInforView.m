@@ -115,10 +115,10 @@
     nameLabel.text = [tmpDic objectForKey:@"appname"];
     praiseCountLabel.text = CountConver([tmpDic objectForKey:@"appreputation"]) ;
     downloadCountLabel.text = CountConver([tmpDic objectForKey:@"appdowncount"]);
-    self.appID = [tmpDic objectForKey:@"appid"];
+    self.appID = [tmpDic objectForKey:@"appdigitalid"];
     self.appPrice = [tmpDic objectForKey:APPPRICE];
     //2.7
-    self.appVersion = [tmpDic objectForKey:@"appversion"];//appversion,displayversion
+    self.appVersion = [tmpDic objectForKey:@"appminosver"];//appversion,displayversion
     [self initDownloadButtonState];
     
 }

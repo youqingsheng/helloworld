@@ -443,8 +443,8 @@
 // 服务器请求地址
 #define TEST_URL  1  //测试 1；正式 0
 #if (TEST_URL == 1)
-#define HEAD_REQSTR @"http://192.168.110.41:81"
-//#define HEAD_REQSTR @"http://123.56.228.139:83"
+//#define HEAD_REQSTR @"http://192.168.110.41:81"
+#define HEAD_REQSTR @"http://123.56.228.139:83"
 #else
 #define HEAD_REQSTR @"http://ftt.mysjzs.com"
 //#define HEAD_REQSTR @"http://www.baby.com"

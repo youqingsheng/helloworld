@@ -82,7 +82,7 @@
 { // 搜索热词
     BOOL isValidFlag = YES;
     
-    if (IS_NSARRAY(dataArray) && dataArray.count>=9) {
+    if (IS_NSARRAY(dataArray) && dataArray.count>=1) {
         for (NSString *hotWord in dataArray) {
             if (!IS_NSSTRING(hotWord) || hotWord.length<1) {
                 isValidFlag = NO;
@@ -174,10 +174,10 @@
         
         if ([typeStr isEqualToString:@"app"]) {
             //应用
-            if (!IS_NSDICTIONARY([obj objectForKey:LUNBO_LINK_DETAIL])) return NO;
-            
-            NSDictionary *appDataDic = [obj objectForKey:LUNBO_LINK_DETAIL];
-            if (![self verifyAppDic:appDataDic]) return NO;
+//            if (!IS_NSDICTIONARY([obj objectForKey:LUNBO_LINK_DETAIL])) return NO;
+//            
+//            NSDictionary *appDataDic = [obj objectForKey:LUNBO_LINK_DETAIL];
+//            if (![self verifyAppDic:appDataDic]) return NO;
             
         }else if ([typeStr isEqualToString:@"article"]) {
             //文章
@@ -257,26 +257,26 @@
     
     
     //字典里取SPECIALS 是数组 && 数组数>4
-    if (!IS_NSARRAY([dic objectForKey:SPECIALS]) || [[dic objectForKey:SPECIALS] count] < 5) return NO;
+    if (!IS_NSARRAY([dic objectForKey:SPECIALS]) || [[dic objectForKey:SPECIALS] count] < 1) return NO;
     
     array = [dic objectForKey:SPECIALS];
-    if (array.count<5) return NO;
+    if (array.count<1) return NO;
     
-    for (id obj in array) {
-        if (!IS_NSDICTIONARY(obj)) return NO;
-        
-        if (![obj getNSStringObjectForKey:SPECIAL_ID] || !IS_NSARRAY([obj objectForKey:@"display_appinfo"]) || ![[obj objectForKey:@"display_appinfo"] count]) return NO;
-        
-        NSArray *array1 = [obj objectForKey:@"display_appinfo"];
-        if (!array1.count) return NO;
-        
-        for (id obj1 in array1) {
-            if (!IS_NSDICTIONARY(obj1)) return NO;
-            
-            if (![obj1 getNSStringObjectForKey:APPNAME] || ![obj1 getNSStringObjectForKey:APPICONURL]) return NO;
-        }
-        
-    }
+//    for (id obj in array) {
+//        if (!IS_NSDICTIONARY(obj)) return NO;
+//        
+////        if (![obj getNSStringObjectForKey:SPECIAL_ID] || !IS_NSARRAY([obj objectForKey:@"display_appinfo"]) || ![[obj objectForKey:@"display_appinfo"] count]) return NO;
+//        
+//        NSArray *array1 = [obj objectForKey:@"display_app_info"];
+//        if (!array1.count) return NO;
+//        
+//        for (id obj1 in array1) {
+//            if (!IS_NSDICTIONARY(obj1)) return NO;
+//            
+//            if (![obj1 getNSStringObjectForKey:APPNAME] || ![obj1 getNSStringObjectForKey:APPICONURL]) return NO;
+//        }
+//        
+//    }
     
     return YES;
 }

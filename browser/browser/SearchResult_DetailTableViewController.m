@@ -804,6 +804,9 @@ enum{
     //相关应用
     
     NSArray *relatedApps = [[dataDic objectForKey:@"data"] objectForKey:@"relatedapps"];
+    if (!relatedApps) {
+        relatedApps = [NSArray array];
+    }
     if ([relatedApps count] > 0) {
         [self initRelevantPage:relatedApps];
     }
@@ -811,10 +814,10 @@ enum{
     NSDictionary *activity = [[dataDic objectForKey:@"data"] objectForKey:@"activity"];
     NSDictionary *evaluating = [[dataDic objectForKey:@"data"] objectForKey:@"evaluating"];
     
-    NSMutableDictionary *testDic = [NSMutableDictionary dictionary];
-    [testDic setObject:activity forKey:@"huodong"];
-    [testDic setObject:evaluating forKey:@"pingce"];
-    [self initTestPage:testDic];
+//    NSMutableDictionary *testDic = [NSMutableDictionary dictionary];
+//    [testDic setObject:activity forKey:@"huodong"];
+//    [testDic setObject:evaluating forKey:@"pingce"];
+//    [self initTestPage:testDic];
     
     [self shouldRelevantPageShow:[relatedApps count] > 0?NO:YES TestPageShow:[activity count] + [evaluating count] > 0?NO:YES];
 
@@ -840,21 +843,23 @@ enum{
     iconURL = [[NSURL alloc ]initWithString:imageUrl];
     [searchManager downloadImageURL:iconURL  userData:appID_];
     
-   
+    introImagesURL = [[NSArray alloc ] initWithArray:[[dataDic objectForKey:@"data" ] objectForKey:@"appipadpreviewimages"]];
+    
     //截图
-    [self previewsActivity:Loading];
-    introImagesURL = [[NSArray alloc ] initWithArray:[[dataDic objectForKey:@"data" ] objectForKey:@"apppreviewimages"]];
+    [self previewsActivity:introImagesURL && introImagesURL.count>0?Loading:Hidden];
+
+    
     for (NSString *URLString in introImagesURL) {
-        NSString* encodeUrlStr = [FileUtil URLEncodedString:URLString];
-        NSURL *imageURL = [NSURL URLWithString:encodeUrlStr];
+//        NSString* encodeUrlStr = [FileUtil URLEncodedString:URLString];
+        NSURL *imageURL = [NSURL URLWithString:URLString];
         [searchManager downloadImageURL:imageURL userData:appID_];
     }
     
     NSString *appdetailInfo = [[dataDic objectForKey:@"data"] objectForKey:@"appdetailinfo"];
     [self.appDetailView setDetailContent:appdetailInfo];
     //获取应用详细介绍
-    NSString* detailIntroduction = [FileUtil URLEncodedString:[[dataDic objectForKey:@"data"] objectForKey:@"ipadetailinfor"]];
-    NSURL *dataURL = [NSURL URLWithString:detailIntroduction];
+    NSString* detailIntroduction = [[dataDic objectForKey:@"data"] objectForKey:@"appintro"];//[FileUtil URLEncodedString:];
+//    NSURL *dataURL = [NSURL URLWithString:detailIntroduction];
     
 //    dispatch_async(dispatch_get_global_queue(0, 0), ^{
 //        NSData *data = [NSData dataWithContentsOfURL:dataURL];
@@ -868,15 +873,15 @@ enum{
 ////                [self checkDataError];
 //                return;
 //            }
-//            NSString *detailText  = [tmpDic objectForKey:@"APPDETAILINTRO"];
-//            [self.appDetailView setDetailContent:detailText];
-//            if ([self getContentHeight:detailText]/DETAIL_FONT_SIZE <5) {
-//                self.appDetailView.expandButton.hidden = YES;
-//                [self.appDetailView layoutSubviews];
-//            }else{
-//                self.appDetailView.expandButton.hidden = NO;
-//                [self.appDetailView layoutSubviews];
-//            }
+    NSString *detailText  = detailIntroduction;//[tmpDic objectForKey:@"appintro"];
+            [self.appDetailView setDetailContent:detailText];
+            if ([self getContentHeight:detailText]/DETAIL_FONT_SIZE <5) {
+                self.appDetailView.expandButton.hidden = YES;
+                [self.appDetailView layoutSubviews];
+            }else{
+                self.appDetailView.expandButton.hidden = NO;
+                [self.appDetailView layoutSubviews];
+            }
 //        });
 //        
 //    });
