@@ -946,7 +946,8 @@ static MyServerRequestManager *serverRequestManager = nil;
 - (void)requestPaidList:(TagType)tagType pageCount:(NSInteger)pageCount isUseCache:(BOOL)isUseCache userData:(id)userData
 {
     isUseCache = NO;
-    NSString *path = @"/chargeApp/list";
+//    http://123.56.228.139:83/charge-app/list?page=1&tag=app
+    NSString *path = @"/charge-app/list";
     NSString *parameter = [NSString stringWithFormat:@"page=%ld&tag=%@",(long)pageCount,(tagType==tagType_app)?@"app":@"game"];
     NSString *cacheStr = [self getCacheURLString:path httpParameter:parameter];
     NSString *reqStr = [self getRequestURLString:path httpParameter:parameter];
@@ -1040,7 +1041,8 @@ static MyServerRequestManager *serverRequestManager = nil;
 - (void)requestFreeList:(TagType)tagType pageCount:(NSInteger)pageCount isUseCache:(BOOL)isUseCache userData:(id)userData
 {
     isUseCache = NO;
-    NSString *path = @"/freeApp/list";
+//    http://123.56.228.139:83/free-app/list?page=1&tag=app
+    NSString *path = @"/free-app/list";
     NSString *parameter = [NSString stringWithFormat:@"page=%ld&tag=%@",(long)pageCount,(tagType==tagType_app)?@"app":@"game"];
     NSString *cacheStr = [self getCacheURLString:path httpParameter:parameter];
     NSString *reqStr = [self getRequestURLString:path httpParameter:parameter];
@@ -1135,7 +1137,7 @@ static MyServerRequestManager *serverRequestManager = nil;
 {
     isUseCache = NO;
 //    http://123.56.228.139:83/limited-free/list?page=1
-    NSString *path = @"/limitedFree/list";
+    NSString *path = @"/limited-free/list";
     NSString *parameter = [NSString stringWithFormat:@"page=%ld",(long)pageCount];
     NSString *cacheStr = [self getCacheURLString:path httpParameter:parameter];
     NSString *reqStr = [self getRequestURLString:path httpParameter:parameter];
