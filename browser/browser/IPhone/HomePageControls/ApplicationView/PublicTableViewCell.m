@@ -16,6 +16,7 @@
 #import "IphoneAppDelegate.h"
 #import "AppStatusManage.h"
 #import <objc/runtime.h>
+#import "MyServerRequestManager.h"
 
 
 @implementation IconImageView
@@ -577,6 +578,13 @@
 
 #pragma mark - 下载或更新
 - (void)beginDownload{
+    
+    NSString *version = [NSString stringWithFormat:@"%@",[infoDic objectForKey:@"displayversion"]?[infoDic objectForKey:@"displayversion"]:[infoDic objectForKey:@"appversion"]];
+    
+    NSString *appdigitalid = [infoDic objectForKey:@"appdigitalid"];
+    [[MyServerRequestManager getManager] downloadCountToAPPID:appdigitalid version:version];
+    [[NSNotificationCenter  defaultCenter] postNotificationName:OPEN_APPSTORE object:appdigitalid];
+    return;
     
     if (self.plistURL) {
         

@@ -9,6 +9,7 @@
 #import "PublicCollectionCell.h"
 #import "AppStatusManage.h"
 #import "IphoneAppDelegate.h"
+#import "MyServerRequestManager.h"
 
 #pragma mark - CollectionViewCellButton
 
@@ -345,6 +346,10 @@
 
 // 下载
 - (void)beginDownload{
+    NSString *version = [NSString stringWithFormat:@"%@",[_cellDataDic objectForKey:@"displayversion"]?[_cellDataDic objectForKey:@"displayversion"]:[_cellDataDic objectForKey:@"appversion"]];
+    [[MyServerRequestManager getManager] downloadCountToAPPID:self.appdigitalid version:version];
+    [[NSNotificationCenter  defaultCenter] postNotificationName:OPEN_APPSTORE object:self.appdigitalid];
+    return;
     
     //增加点击下载应用的appid和appdigitalid的对应关系
     [[NSUserDefaults standardUserDefaults] setObject:self.appdigitalid forKey:self.appID];

@@ -19,93 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "browser/browser/MyServerRequestManager.m"
-            timestampString = "481558992.069428"
+            filePath = "browser/browser/SetDownloadButtonState.m"
+            timestampString = "482602457.420537"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "439"
-            endingLineNumber = "439"
-            landmarkName = "-requestCategoryAppGameList:pageCount:isUseCache:userData:"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__83-[MyServerRequestManager requestCategoryAppGameList:pageCount:isUseCache:userData:]_block_invoke_2.261"
-                  moduleName = "&#x5e94;&#x7528;&#x5b9d;&#x8d1d;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yqs/Desktop/yybb/helloworld/browser/browser/MyServerRequestManager.m"
-                  timestampString = "481559844.988746"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "439"
-                  endingLineNumber = "439"
-                  offsetFromSymbolStart = "34">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__83-[MyServerRequestManager requestCategoryAppGameList:pageCount:isUseCache:userData:]_block_invoke_3.262"
-                  moduleName = "&#x5e94;&#x7528;&#x5b9d;&#x8d1d;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yqs/Desktop/yybb/helloworld/browser/browser/MyServerRequestManager.m"
-                  timestampString = "481559844.98885"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "440"
-                  endingLineNumber = "440"
-                  offsetFromSymbolStart = "84">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "browser/browser/MyServerRequestManager.m"
-            timestampString = "481558992.069428"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "949"
-            endingLineNumber = "949"
-            landmarkName = "-requestPaidList:pageCount:isUseCache:userData:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "browser/browser/MyServerRequestManager.m"
-            timestampString = "481558992.069428"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1232"
-            endingLineNumber = "1232"
-            landmarkName = "-requestInstalledNecessaryList:isUseCache:userData:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "browser/browser/MyServerRequestManager.m"
-            timestampString = "481559828.227784"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1742"
-            endingLineNumber = "1742"
-            landmarkName = "-getSelfDigitalId:userData:"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "-beginDownload"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

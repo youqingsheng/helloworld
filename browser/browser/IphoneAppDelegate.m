@@ -42,6 +42,7 @@
 #import "AppUpdateNewVersion.h"
 
 #import "ViewController.h"
+#import "ChangyanSDK.h"
 
 #define  ALERTVIEW_TAG_INSTALL_ON_IPAD  100
 
@@ -119,6 +120,23 @@
 //    NSLog(@"Release called on an NSTableView");
 //}
 
+-(void)registerChangyanSDK
+{
+    [ChangyanSDK registerApp:@"cyslglANF" appKey:@"affe23359079b13a27e6d8b7b5eabaf2" redirectUrl:@"http://www.baby.com" anonymousAccessToken:@""];
+    [ChangyanSDK setAllowSelfLogin:NO];
+//    [ChangyanSDK setLoginViewController:[[LoginViewController alloc] init]];
+    
+    [ChangyanSDK setAllowAnonymous:NO];
+    [ChangyanSDK setAllowRate:NO];
+    [ChangyanSDK setAllowUpload:YES];
+    [ChangyanSDK setAllowWeiboLogin:YES];
+    [ChangyanSDK setAllowQQLogin:YES];
+    [ChangyanSDK setAllowSohuLogin:YES];
+    
+    [ChangyanSDK setNavigationBackgroundColor:[UIColor whiteColor]];
+    [ChangyanSDK setNavigationTintColor:[UIColor blackColor]];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //判断是否安全包
@@ -138,7 +156,7 @@
     }
     
     [[FileUtil instance] saveFileToPC];
-    
+    [self registerChangyanSDK];
     
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
 //        

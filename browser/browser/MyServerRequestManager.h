@@ -156,4 +156,6 @@ typedef enum{
 //- (void)requestDirectlyGoAppStoreSwitch;//是否直接跳store,默认否
 //应用详情
 - (void)requestAppInformation:(NSString*)appid userData:(id)userData;
+
+-(void)downloadCountToAPPID:(NSString *)appid version:(NSString *)appversion;
 @end

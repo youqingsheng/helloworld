@@ -338,7 +338,20 @@
     if (section%2 == 0){//横滑+专题
         return 1;
     }else if (section%2 == 1 && section < 15 ){//夹cell
-        return 8;
+        NSArray *totalDataArray = [_dataDic objectForKey:RECOMMENDAPPS];
+        NSUInteger length;
+        if (totalDataArray) {
+            length = totalDataArray.count / 7;
+            
+//            NSUInteger location = (section-1)/2*4;
+//            length = (location+4)>totalDataArray.count?totalDataArray.count-location:4;
+        }
+        else{
+            length = 8;
+        }
+        
+        return length;
+//        return 4;
     }else{ //更多cell
         return hasNextPage?moreDataArray.count+1:moreDataArray.count;
     }
@@ -444,13 +457,22 @@
         [cell setBottomLineLong:NO];
         
         if (indexPath.section < 14) {
+            NSArray *totalDataArray = [_dataDic objectForKey:RECOMMENDAPPS];
+            NSInteger count = totalDataArray.count /7;
             //设置下线
-            if (indexPath.row==7) {
+            if (indexPath.row==(count-1)) {
                 [cell setBottomLineLong:YES];
             }
             //设置数据
-            NSArray *totalDataArray = [_dataDic objectForKey:RECOMMENDAPPS];
-            NSArray *showDataArray = [totalDataArray objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange((indexPath.section-1)/2*8, 8)]];
+            
+            NSUInteger location = (indexPath.section-1)/2*count;
+            NSUInteger length = (location+count)>totalDataArray.count?totalDataArray.count-location:count;
+            NSArray *showDataArray = [totalDataArray objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(location,length)]];
+            
+            if (indexPath.row >= showDataArray.count) {
+                return cell;
+            }
+            
             NSDictionary *showCellDic = [showDataArray objectAtIndex:indexPath.row];
             //设置属性
             cell.downLoadSource = HOME_PAGE_RECOMMEND_MY(indexPath.section, indexPath.row);
@@ -557,7 +579,10 @@
             
             //设置数据
             NSArray *totalDataArray = [_dataDic objectForKey:RECOMMENDAPPS];
-            NSArray *showDataArray = [totalDataArray objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange((indexPath.section-1)/2*8, 8)]];
+            NSInteger count = totalDataArray.count /7;
+            NSUInteger location = (indexPath.section-1)/2*count;
+            NSUInteger length = (location+count)>totalDataArray.count?totalDataArray.count-location:count;
+            NSArray *showDataArray = [totalDataArray objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(location,length)]];
             showCellDic = [showDataArray objectAtIndex:indexPath.row];
             
         }else{

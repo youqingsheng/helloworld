@@ -248,10 +248,10 @@
     if (![self verifyAppArray:array]) return NO;
     
     //字典里取RECOMMENDAPPS 是数组 && 数组数>27
-    if (!IS_NSARRAY([dic objectForKey:RECOMMENDAPPS]) || [[dic objectForKey:RECOMMENDAPPS] count] < 56) return NO;
+    if (!IS_NSARRAY([dic objectForKey:RECOMMENDAPPS])) return NO;
     
     array = [dic objectForKey:RECOMMENDAPPS];
-    if (array.count<56) return NO;
+//    if (array.count<56) return NO;
     
     if (![self verifyAppArray:array]) return NO;
     

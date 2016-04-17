@@ -296,6 +296,11 @@
 // 下载
 - (void)beginDownload{
     
+    NSString *version = [NSString stringWithFormat:@"%@",[_cellDataDic objectForKey:@"displayversion"]?[_cellDataDic objectForKey:@"displayversion"]:[_cellDataDic objectForKey:@"appversion"]];
+    [[MyServerRequestManager getManager] downloadCountToAPPID:self.appdigitalid version:version];
+    
+    [[NSNotificationCenter  defaultCenter] postNotificationName:OPEN_APPSTORE object:self.appdigitalid];
+    return;
 //    if (!HAS_CONNECTED_PC) {
 //        //跳转store
 //        [[NSNotificationCenter  defaultCenter] postNotificationName:OPEN_APPSTORE object:self.appID];

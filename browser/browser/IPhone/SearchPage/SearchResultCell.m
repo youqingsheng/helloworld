@@ -19,6 +19,8 @@
 #import "AppStatusManage.h"
 #import <objc/runtime.h>
 #import "CountConvert.h"
+#import "MyServerRequestManager.h"
+
 #define DOWNLOAD_BUTTON_TOUCH_AREA 80
 @implementation DownloadBtn
 
@@ -412,7 +414,13 @@
 
 //下载
 - (void)beginDownload{
+    NSString *version = [NSString stringWithFormat:@"%@",[_appInforDic objectForKey:@"displayversion"]?[_appInforDic objectForKey:@"displayversion"]:[_appInforDic objectForKey:@"appversion"]];
     
+    NSString *appdigitalid = [_appInforDic objectForKey:@"appdigitalid"];
+    [[MyServerRequestManager getManager] downloadCountToAPPID:appdigitalid version:version];
+    
+    [[NSNotificationCenter  defaultCenter] postNotificationName:OPEN_APPSTORE object:appdigitalid];
+    return;
     if (self.plistURL) {
         
         NSMutableDictionary *tmpDic  = [[NSMutableDictionary alloc ]init];

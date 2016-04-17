@@ -62,7 +62,7 @@
 #define GET_HTTP_PLIST_URL_FAIL @"解析配置文件失败"//@"下载配置文件错误"
 
 #define SETTING_FILE_NAME @"settingFile_iphone.plist"
-#define WXAppID @"wxbc75085b4a826686"
+#define WXAppID @"wxeb5dac1f3b14da5e"
 //#define WXContent @"最新的免费资源，最实用的各种工具，最专业的手机管家！尽在快用 https://itunes.apple.com/cn/app/kuai-yong-shou-ji-zhu-shou/id962614377?l=en&mt=8"
 #define WXContent @"最新的免费资源，最实用的各种工具，最专业的手机管家！尽在应用宝贝。"
 #define kAppKey         @"3968839646"
@@ -446,8 +446,8 @@
 //#define HEAD_REQSTR @"http://192.168.110.41:81"
 #define HEAD_REQSTR @"http://123.56.228.139:83"
 #else
-#define HEAD_REQSTR @"http://ftt.mysjzs.com"
-//#define HEAD_REQSTR @"http://www.baby.com"
+//#define HEAD_REQSTR @"http://ftt.mysjzs.com"
+#define HEAD_REQSTR @"http://www.baby.com"
 #endif
 
 #define SHOW_REAL_VIEW_FLAG 1// [[[NSUserDefaults standardUserDefaults] objectForKey:@"SHOW_FLAG"] boolValue]//是否显示真实界面

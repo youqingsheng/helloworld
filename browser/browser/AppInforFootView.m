@@ -112,7 +112,7 @@
     sizeLabel.text = [NSString stringWithFormat:@"大小 %@M",mSize];
     deviceLabel.text =  [NSString stringWithFormat:@"设备 %@",[tmpDic objectForKey:@"appsupportdevice"]];
     systemLabel.text =  [NSString stringWithFormat:@"系统 %@及以上",[tmpDic objectForKey:@"appminosver"]];
-    timeLabel.text =  [NSString stringWithFormat:@"时间 %@",[tmpDic objectForKey:@"appupdatetime"]];//appinserttime
+    timeLabel.text =  [NSString stringWithFormat:@"时间 %@",[tmpDic objectForKey:@"appinserttime"]];//appinserttime
     versionLabel.text  =  [NSString stringWithFormat:@"版本 %@",[tmpDic objectForKey:@"displayversion"]?[tmpDic objectForKey:@"displayversion"]:[tmpDic objectForKey:@"appversion"]];
 }
 

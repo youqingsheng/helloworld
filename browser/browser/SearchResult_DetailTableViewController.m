@@ -21,6 +21,9 @@
 #import "AppStatusManage.h"
 #import "CollectionViewBack.h"
 #import "SDImageCache.h"
+#import "ChangyanSDK.h"
+#import "DiscussView.h"
+
 #define sectionHeadView_Height 40
 #define cellHeight (self.view.frame.size.height -sectionHeadView_Height)
 #define tableViewHeadView_Heigh 100
@@ -59,6 +62,7 @@
     int currentIndex;
     CollectionViewBack * _backView;//加载中
     BOOL atLeastOnePreviewSuccess;
+    UIButton *loginBtn;
 }
 
 
@@ -218,9 +222,9 @@ enum{
                                                  name:REFRESH_MOBILE_APP_LIST
                                                object:nil];
     
-    //监听软键盘弹出
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeDiscussPagePosition:) name:UIKeyboardWillShowNotification object:@"keyboardShow"];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeDiscussPagePosition:) name:UIKeyboardWillHideNotification object:@"keyboardHide"];
+//    //监听软键盘弹出
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeDiscussPagePosition:) name:UIKeyboardWillShowNotification object:@"keyboardShow"];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeDiscussPagePosition:) name:UIKeyboardWillHideNotification object:@"keyboardHide"];
     
 }
 #pragma mark - 更新下载按钮状态
@@ -237,12 +241,12 @@ enum{
 
 #pragma mark - 软键盘弹出,调整discuss位置
 - (void)changeDiscussPagePosition:(NSNotification *)noti{
-    if ([noti.object isEqualToString:@"keyboardShow"]) {
-        self.tableView.contentOffset = CGPointMake(0, _headView.frame.size.height);
-    }else{
-        self.tableView.contentOffset = CGPointZero;
-
-    }
+//    if ([noti.object isEqualToString:@"keyboardShow"]) {
+//        self.tableView.contentOffset = CGPointMake(0, _headView.frame.size.height);
+//    }else{
+//        self.tableView.contentOffset = CGPointZero;
+//
+//    }
     
 }
 - (void)viewWillLayoutSubviews{
@@ -266,15 +270,92 @@ enum{
 }
 
     //初始化评论页面
-- (void)initDiscussPage:(NSString *)URLString{
+- (void)initDiscussPageWithID:(NSString *)URLString{
     discussWebView = [[AppDiscussWebView alloc ]init];
-    discussWebView.delegate = self;
+    discussWebView.scrollView.scrollEnabled = NO;
+//    discussWebView.delegate = self;
     
     discussWebView.frame = CGRectMake(- MainScreen_Width, 0, MainScreen_Width, 100);
+    
+    DiscussView *discussview = [[[NSBundle mainBundle] loadNibNamed:@"DiscussView" owner:self options:nil] lastObject];
+    discussview.frame = CGRectMake(7, 10, MainScreen_Width - 14, 68);
+    
+    [ChangyanSDK getCommentCount:nil topicSourceID:URLString topicUrl:nil completeBlock:^(CYStatusCode statusCode, NSString *responseStr)
+     {
+         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[responseStr dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
+         if (dict&&![dict isKindOfClass:[NSNull class]]) {
+             discussview.countLB.text = [NSString stringWithFormat:@"%@条评论",[[[dict objectForKey:@"result"] objectForKey:URLString] objectForKey:@"comments"]];
+         }
+     }];
+    
+    [discussWebView addSubview:discussview];
+    
+    UIView *postButton = [ChangyanSDK getPostCommentBar:CGRectMake(7, 38, discussview.frame.size.width - 14, 30)
+                                      postCommentButton:nil
+                                               topicUrl:@""
+                                          topicSourceID:URLString
+                                                topicID:nil
+                                             categoryID:nil
+                                             topicTitle:nil
+                                                 target:self];
+    [discussview addSubview:postButton];
+    
+    BOOL islogin = [ChangyanSDK isLogin];
+    
+    if (!islogin) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.backgroundColor = [UIColor clearColor];
+        btn.frame = CGRectMake(7, 38, discussview.frame.size.width - 14, 32);
+        [btn addTarget:self action:@selector(gotoLoginVC) forControlEvents:UIControlEventTouchUpInside];
+        loginBtn = btn;
+        [discussview addSubview:btn];
+    }
+    
+    UIViewController *listViewController = [ChangyanSDK getListCommentViewController:@""
+                                                                             topicID:nil
+                                                                       topicSourceID:URLString
+                                                                          categoryID:nil
+                                                                          topicTitle:nil];
+    
+//    [self presentViewController:listViewController animated:YES completion:^{
+//        
+//    }];
+    listViewController.view.frame = CGRectMake(0, 74, MainScreen_Width, 400 - 120);
+    [discussWebView addSubview:listViewController.view];
+    
+    UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn2.backgroundColor = [UIColor clearColor];
+    [btn2 setTitle:@"查看评论列表" forState:UIControlStateNormal];
+    btn2.frame = CGRectMake(50, 355, discussview.frame.size.width - 100, 32);
+    [btn2 addTarget:self action:@selector(gotoListVC) forControlEvents:UIControlEventTouchUpInside];
+    [discussview addSubview:btn2];
 
     [self.tableView addSubview:discussWebView];
-    [discussWebView loadURLString:URLString];
+//    [discussWebView loadURLString:URLString];
 
+}
+
+-(void)gotoListVC
+{
+    UIViewController *listViewController = [ChangyanSDK getListCommentViewController:@""
+                                                                             topicID:nil
+                                                                       topicSourceID:discussURLString
+                                                                          categoryID:nil
+                                                                          topicTitle:nil];
+    
+        [self presentViewController:listViewController animated:YES completion:^{
+    
+        }];
+}
+
+- (void)gotoLoginVC
+{
+    [ChangyanSDK thirdPartLogin:2 completeBlock:^(CYStatusCode statusCode, NSString *responseStr) {
+        if (statusCode == CYSuccess && loginBtn)
+        {
+            loginBtn.hidden = YES;
+        }
+    }];
 }
 
 
@@ -313,13 +394,13 @@ enum{
 
 #pragma  mark - webViewDelegate
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
-    NSString *meta = [NSString stringWithFormat:@"document.getElementsByName(\"viewport\")[0].content = \"width=%f, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\"", webView.frame.size.width];
-    [webView stringByEvaluatingJavaScriptFromString:meta];
-    
-    // 禁用用户选择
-    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
-    // 禁用长按弹出框
-    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout='none';"];
+//    NSString *meta = [NSString stringWithFormat:@"document.getElementsByName(\"viewport\")[0].content = \"width=%f, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\"", webView.frame.size.width];
+//    [webView stringByEvaluatingJavaScriptFromString:meta];
+//    
+//    // 禁用用户选择
+//    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
+//    // 禁用长按弹出框
+//    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout='none';"];
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -511,7 +592,7 @@ enum{
     [self moveSepetate_arrowToButton:index];
     if (index != DISCUSS_PAGE) {
         //使discussWebView 失去响应焦点,达到收起键盘目的
-        [discussWebView stringByEvaluatingJavaScriptFromString:@"document.activeElement.blur()"];
+//        [discussWebView stringByEvaluatingJavaScriptFromString:@"document.activeElement.blur()"];
         discussWebView.frame = CGRectMake(-MainScreen_Width, 0, MainScreen_Width, 400);
     }else{
         discussWebView.frame = CGRectMake(0,  _headView.frame.size.height + sectionHeadView_Height, MainScreen_Width, self.tableView.frame.size.height  - sectionHeadView_Height);
@@ -566,7 +647,6 @@ enum{
     [self showPageWithIndex:DETAIL_PAGE];
 }
 - (void)showDiscussPage{
-//    [self initDiscussPage:discussURLString];
     [self showPageWithIndex:DISCUSS_PAGE];
 
 }
@@ -888,8 +968,8 @@ enum{
     
     
     //初始化评论页签
-    discussURLString = [[dataDic objectForKey:@"data"] objectForKey:@"appcommenturl" ];
-    [self initDiscussPage:discussURLString];
+    discussURLString = [[dataDic objectForKey:@"data"] objectForKey:@"appdigitalid" ];
+    [self initDiscussPageWithID:discussURLString];
     discussWebView.frame  =  CGRectMake(-MainScreen_Width, 0, MainScreen_Width, 400);
     
  
