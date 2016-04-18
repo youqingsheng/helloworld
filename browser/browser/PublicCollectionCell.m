@@ -254,7 +254,7 @@
         }
         
         NSString *size = [showCellDic objectForKey:@"appdisplaysize"];
-        NSString *mSize = [NSString stringWithFormat:@"%.2f",size.integerValue/1024.0/1024.0];
+        NSString *mSize = size;//[NSString stringWithFormat:@"%.2f",size.integerValue/1024.0/1024.0];
 //        [showCellDic objectForKey:APPSIZE_MY]
         NSString *content = [NSString stringWithFormat:@"%@   |   %@M",[showCellDic objectForKey:APPDOWNCOUNT],mSize];
         [_downButton setTitle:content forState:UIControlStateNormal];

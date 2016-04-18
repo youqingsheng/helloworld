@@ -917,7 +917,7 @@ BOOL _deceler_choice;
     for (id cell in myCollectionView.visibleCells) {
         if ([cell isKindOfClass:[PublicCollectionCell class]]) {
             PublicCollectionCell *tmpCell = cell;
-//            [appidArray addObject:tmpCell.appID];
+            [appidArray addObject:tmpCell.appID];
             [appdigidArray addObject:tmpCell.appdigitalid];
         }
     }

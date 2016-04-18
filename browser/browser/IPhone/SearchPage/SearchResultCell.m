@@ -237,7 +237,7 @@
     [self setGoodNumberLabelText: reputation];
     [self setDownloadNumberLabelText:[appInfor objectForKey:@"appdowncount"]];
     NSString *size = [appInfor objectForKey:@"appdisplaysize"];
-    NSString *mSize = [NSString stringWithFormat:@"%.2f",size.integerValue/1024.0/1024.0];
+    NSString *mSize = size;//[NSString stringWithFormat:@"%.2f",size.integerValue/1024.0/1024.0];
     [self setLabelType:[appInfor objectForKey:@"category"] Size:mSize];
     [self setDetailText:[appInfor objectForKey:@"appintro"]];
     self.iconURLString = [appInfor objectForKey:@"appiconurl"];

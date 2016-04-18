@@ -332,7 +332,7 @@ BOOL _deceler_myCollection;
     for (id cell in self.myCollectionView.visibleCells) {
         if ([cell isKindOfClass:[PublicCollectionCell class]]) {
             PublicCollectionCell *tmpCell = cell;
-//            [appidArray addObject:tmpCell.appID];
+            [appidArray addObject:tmpCell.appID];
             [appdigidArray addObject:tmpCell.appdigitalid];
         }
     }

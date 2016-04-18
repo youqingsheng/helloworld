@@ -253,7 +253,7 @@
     for (UICollectionViewCell *obj in cellArray) {
         if (obj.tag == TAG_NORMALCELL) {
             PublicCollectionCell *cell = (PublicCollectionCell*)obj;
-//            [appIds addObject:cell.appID];
+            [appIds addObject:cell.appID];
             [digitalIds addObject:cell.appdigitalid];
         }
     }

@@ -108,7 +108,7 @@
     NSDictionary *tmpDic = [dataDic objectForKey:@"data"];
     typeLabel.text  = [NSString stringWithFormat:@"类型 %@",[tmpDic objectForKey:@"category"]];
     NSString *size = [tmpDic objectForKey:@"appdisplaysize"];
-    NSString *mSize = [NSString stringWithFormat:@"%.2f",size.integerValue/1024.0/1024.0];
+    NSString *mSize = size;//[NSString stringWithFormat:@"%.2f",size.integerValue/1024.0/1024.0];
     sizeLabel.text = [NSString stringWithFormat:@"大小 %@M",mSize];
     deviceLabel.text =  [NSString stringWithFormat:@"设备 %@",[tmpDic objectForKey:@"appsupportdevice"]];
     systemLabel.text =  [NSString stringWithFormat:@"系统 %@及以上",[tmpDic objectForKey:@"appminosver"]];

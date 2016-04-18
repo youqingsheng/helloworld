@@ -187,13 +187,13 @@
 
 //分享的webpageurl域名
 #if (URL_TYPE == 1)
-#define SINA_SHARE_URL @"http://iphoneapp_s.kuaiyong.com/s/"
+#define SINA_SHARE_URL @"www.yybb18.com"//@"http://iphoneapp_s.kuaiyong.com/s/"
 #else
-#define SINA_SHARE_URL @"http://iphoneapp.kuaiyong.com/s/"
+#define SINA_SHARE_URL @"www.yybb18.com"//@"http://iphoneapp.kuaiyong.com/s/"
 #endif
 /**************************************************/
 //分享webpageurl域名暂时写为MY官网
-#define WEIXIN_SHARE_URL @"http://www.mysjzs.com"
+#define WEIXIN_SHARE_URL @"www.yybb18.com"//@"http://www.mysjzs.com"
 /**************************************************/
 
 //请求iPad下载地址
