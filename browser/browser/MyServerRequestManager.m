@@ -2012,10 +2012,10 @@ static MyServerRequestManager *serverRequestManager = nil;
 - (void)requestAppInformation:(NSString *)appid userData:(id)userData{
     
 //    http://123.56.228.139:83/app-detail/detailInfo?appid= 307880732
-    
+//    appDigitalId=584660358
 //    NSString *path = @"/appDetail/detailINfo";
     NSString *path = @"/app-detail/detailInfo";
-    NSString *parameter = [NSString stringWithFormat:@"appid=%@",appid];
+    NSString *parameter = [NSString stringWithFormat:@"appDigitalId=%@",appid];
 
     
 //    //测试使用

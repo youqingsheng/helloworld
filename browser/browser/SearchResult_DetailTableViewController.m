@@ -38,6 +38,7 @@
 {
     int cell_type;
     AppDiscussWebView *discussWebView;
+    UIScrollView *discussScroll;
     float currentCellHeight;
     float discussWebViewHeight;
     UIView *sectionHeadView;
@@ -63,6 +64,7 @@
     CollectionViewBack * _backView;//加载中
     BOOL atLeastOnePreviewSuccess;
     UIButton *loginBtn;
+    UIViewController *listViewController;
 }
 
 
@@ -89,6 +91,17 @@ enum{
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return self;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (listViewController) {
+        CGRect frame = listViewController.view.frame;
+        frame.origin.x = 0;
+        frame.origin.y = 0;
+        listViewController.view.frame = frame;
+    }
 }
 
 - (void)viewDidLoad
@@ -311,7 +324,11 @@ enum{
         [discussview addSubview:btn];
     }
     
-    UIViewController *listViewController = [ChangyanSDK getListCommentViewController:@""
+    discussScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 100, MainScreen_Width, 400 - 100)];
+    discussScroll.bounces = NO;
+    [discussWebView addSubview:discussScroll];
+    
+    listViewController = [ChangyanSDK getListCommentViewController:@""
                                                                              topicID:nil
                                                                        topicSourceID:URLString
                                                                           categoryID:nil
@@ -320,15 +337,16 @@ enum{
 //    [self presentViewController:listViewController animated:YES completion:^{
 //        
 //    }];
-    listViewController.view.frame = CGRectMake(0, 74, MainScreen_Width, 400 - 120);
-    [discussWebView addSubview:listViewController.view];
+//    listViewController.view.frame = CGRectMake(0, 100, MainScreen_Width, 400 - 100);
+    [discussScroll addSubview:listViewController.view];
+    discussScroll.contentSize = CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height - 20);
     
-    UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn2.backgroundColor = [UIColor clearColor];
-    [btn2 setTitle:@"查看评论列表" forState:UIControlStateNormal];
-    btn2.frame = CGRectMake(50, 355, discussview.frame.size.width - 100, 32);
-    [btn2 addTarget:self action:@selector(gotoListVC) forControlEvents:UIControlEventTouchUpInside];
-    [discussview addSubview:btn2];
+//    UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
+//    btn2.backgroundColor = [UIColor redColor];
+//    [btn2 setTitle:@"查看评论列表" forState:UIControlStateNormal];
+//    btn2.frame = CGRectMake(50, 350, discussWebView.frame.size.width - 100, 32);
+//    [btn2 addTarget:self action:@selector(gotoListVC) forControlEvents:UIControlEventTouchUpInside];
+//    [discussWebView addSubview:btn2];
 
     [self.tableView addSubview:discussWebView];
 //    [discussWebView loadURLString:URLString];
@@ -337,13 +355,13 @@ enum{
 
 -(void)gotoListVC
 {
-    UIViewController *listViewController = [ChangyanSDK getListCommentViewController:@""
+    UIViewController *alistViewController = [ChangyanSDK getListCommentViewController:@""
                                                                              topicID:nil
                                                                        topicSourceID:discussURLString
                                                                           categoryID:nil
                                                                           topicTitle:nil];
-    
-        [self presentViewController:listViewController animated:YES completion:^{
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:alistViewController];
+        [self presentViewController:nav animated:YES completion:^{
     
         }];
 }
