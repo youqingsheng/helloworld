@@ -338,7 +338,7 @@ enum{
         if ([self.tableView indexPathForCell:cell].row <= 50) {
             if ([cell isKindOfClass:[SearchResultCell class]]) {
                 SearchResultCell * searchResultCell  = (SearchResultCell * )cell;
-//                [exposure addObject:searchResultCell.appID];
+                [exposure addObject:searchResultCell.appID];
             }
         }
     }

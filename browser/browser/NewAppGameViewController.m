@@ -410,7 +410,7 @@ BOOL _deceler_new;
     for (UICollectionViewCell *obj in cellArray) {
         if (obj.tag == 201) {
             PublicCollectionCell *cell = (PublicCollectionCell*)obj;
-//            [appIds addObject:cell.appID];
+            [appIds addObject:cell.appID];
             [digitalIds addObject:cell.appdigitalid];
         }
 
