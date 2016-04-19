@@ -941,7 +941,7 @@ enum{
     iconURL = [[NSURL alloc ]initWithString:imageUrl];
     [searchManager downloadImageURL:iconURL  userData:appID_];
     
-    introImagesURL = [[NSArray alloc ] initWithArray:[[dataDic objectForKey:@"data" ] objectForKey:@"appipadpreviewimages"]];
+    introImagesURL = [[NSArray alloc ] initWithArray:[[dataDic objectForKey:@"data" ] objectForKey:@"appiphonepreviewimages"]];
     
     //截图
     [self previewsActivity:introImagesURL && introImagesURL.count>0?Loading:Hidden];

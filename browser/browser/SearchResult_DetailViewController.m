@@ -206,13 +206,13 @@
 #pragma mark - 准备数据
 - (void)beginPrepareAppContent:(NSDictionary *)appDic{
     appInforDic = appDic;
-    
+    BOOL isdict = [appDic isKindOfClass:[NSDictionary class]];
     if([self.detailType isEqualToString:@"FreeFlow"]){
         detailTableViewController.mianLiuPlist = self.mianliuPList;
     }
 
     [self checkPraiseButtonState];
-    [detailTableViewController prepareAppContent:[appDic objectForKey:@"appdigitalid"] pos:[NSString stringWithFormat:@"%d",1]];
+    [detailTableViewController prepareAppContent: isdict?[appDic objectForKey:@"appdigitalid"]:appDic pos:[NSString stringWithFormat:@"%d",1]];
     AppTestTableViewController *testDetail  = [detailTableViewController getTestTableViewController];
 
     testDetail.testDetailDelegate = self;
@@ -224,14 +224,14 @@
 
 //检查推荐按钮状态
 - (void)checkPraiseButtonState{
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *array = [NSMutableArray arrayWithArray:[user objectForKey:APP_RECOMMEND]];
+//    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+//    NSMutableArray *array = [NSMutableArray arrayWithArray:[user objectForKey:APP_RECOMMEND]];
     
-    if ([array containsObject:[appInforDic objectForKey:@"appid"]]){
-        [navBar.praiseButton setSelected:YES];
-    }else{
-        [navBar.praiseButton setSelected:NO];
-    }
+//    if ([array containsObject:[appInforDic objectForKey:@"appid"]]){
+//        [navBar.praiseButton setSelected:YES];
+//    }else{
+//        [navBar.praiseButton setSelected:NO];
+//    }
 }
 
 - (void)getImageFailFromUrl:(NSString *)urlStr userData:(id)userdata{

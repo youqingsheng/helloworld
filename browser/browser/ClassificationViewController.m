@@ -77,7 +77,7 @@ static NSString *cellLoadingIden_class = @"LoadingCollectionCell_class";
     }];
     [self.view addSubview:_backView];
     _backView.status = Loading;
-    [self refreshRequest];
+//    [self refreshRequest];
     
     detailVC = [[SearchResult_DetailViewController alloc]init];
     detailVC.isPushByClassification = YES;
