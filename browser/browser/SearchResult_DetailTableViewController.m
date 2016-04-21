@@ -147,11 +147,11 @@ enum{
     
 
     self.detailsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.detailsButton.frame = CGRectMake(0, 8, TAG_BUTTON_WEIGHT, button_height);
+    self.detailsButton.frame = CGRectMake(0, 8 , TAG_BUTTON_WEIGHT, button_height);
     [self.detailsButton setTitle:@"详   情" forState:UIControlStateNormal];
     self.detailsButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [self.detailsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.detailsButton addTarget:self action:@selector(showDetailsPage) forControlEvents:UIControlEventTouchUpInside];
+//    [self.detailsButton addTarget:self action:@selector(showDetailsPage) forControlEvents:UIControlEventTouchUpInside];
     [section_bg addSubview:self.detailsButton];
     
     self.discussButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -607,16 +607,16 @@ enum{
 
 //控制详情,评论等页签的显示
 - (void )showPageWithIndex:(int)index{
-    [self moveSepetate_arrowToButton:index];
-    if (index != DISCUSS_PAGE) {
-        //使discussWebView 失去响应焦点,达到收起键盘目的
-//        [discussWebView stringByEvaluatingJavaScriptFromString:@"document.activeElement.blur()"];
-        discussWebView.frame = CGRectMake(-MainScreen_Width, 0, MainScreen_Width, 400);
-    }else{
-        discussWebView.frame = CGRectMake(0,  _headView.frame.size.height + sectionHeadView_Height, MainScreen_Width, self.tableView.frame.size.height  - sectionHeadView_Height);
-    }
-    cell_type = index;
-    [self.tableView reloadData];
+//    [self moveSepetate_arrowToButton:index];
+//    if (index != DISCUSS_PAGE) {
+//        //使discussWebView 失去响应焦点,达到收起键盘目的
+////        [discussWebView stringByEvaluatingJavaScriptFromString:@"document.activeElement.blur()"];
+//        discussWebView.frame = CGRectMake(-MainScreen_Width, 0, MainScreen_Width, 400);
+//    }else{
+//        discussWebView.frame = CGRectMake(0,  _headView.frame.size.height + sectionHeadView_Height, MainScreen_Width, self.tableView.frame.size.height  - sectionHeadView_Height);
+//    }
+//    cell_type = index;
+//    [self.tableView reloadData];
 
 }
 //将标签指示箭头移动到当前标签的底部,改变标题颜色
@@ -665,7 +665,18 @@ enum{
     [self showPageWithIndex:DETAIL_PAGE];
 }
 - (void)showDiscussPage{
-    [self showPageWithIndex:DISCUSS_PAGE];
+    UIViewController *listVC = [ChangyanSDK getListCommentViewController:@""
+                                                           topicID:nil
+                                                     topicSourceID:discussURLString
+                                                        categoryID:nil
+                                                        topicTitle:nil];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:listVC];
+    
+    [self presentViewController:nav animated:YES completion:^{
+        
+    }];
+    
+//    [self showPageWithIndex:DISCUSS_PAGE];
 
 }
 - (void)showRelevantPage{
@@ -987,8 +998,8 @@ enum{
     
     //初始化评论页签
     discussURLString = [[dataDic objectForKey:@"data"] objectForKey:@"appdigitalid" ];
-    [self initDiscussPageWithID:discussURLString];
-    discussWebView.frame  =  CGRectMake(-MainScreen_Width, 0, MainScreen_Width, 400);
+//    [self initDiscussPageWithID:discussURLString];
+//    discussWebView.frame  =  CGRectMake(-MainScreen_Width, 0, MainScreen_Width, 400);
     
  
     [self.parentVC lockFunctionButton:NO];
