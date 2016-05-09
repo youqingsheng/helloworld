@@ -104,8 +104,10 @@
     nameLabel.frame = CGRectMake(iconImageView.frame.origin.x + iconImageView.frame.size.width + 13, 18, self.frame.size.width-(iconImageView.frame.origin.x + iconImageView.frame.size.width + 13) - (self.frame.size.width - self.appStateButton.frame.origin.x), 38);
     praiseCountImageView.frame = CGRectMake(nameLabel.frame.origin.x, nameLabel.frame.origin.y + nameLabel.frame.size.height + 8, 15, 15);
     praiseCountLabel.frame = CGRectMake(praiseCountImageView.frame.origin.x + praiseCountImageView.frame.size.width + 3, praiseCountImageView.frame.origin.y+1 , 55, label_font_size);
-    downloadCountImageView.frame = CGRectMake(praiseCountLabel.frame.origin.x + praiseCountLabel.frame.size.width , praiseCountLabel.frame.origin.y , 15, 15);
-    downloadCountLabel.frame = CGRectMake(downloadCountImageView.frame.origin.x + downloadCountImageView.frame.size.width + 3, downloadCountImageView.frame.origin.y+1 , 70, label_font_size);
+    praiseCountLabel.hidden = YES;
+    praiseCountImageView.hidden = YES;
+    downloadCountImageView.frame = praiseCountImageView.frame;//CGRectMake(praiseCountLabel.frame.origin.x + praiseCountLabel.frame.size.width , praiseCountLabel.frame.origin.y , 15, 15);
+    downloadCountLabel.frame = praiseCountLabel.frame;//CGRectMake(downloadCountImageView.frame.origin.x + downloadCountImageView.frame.size.width + 3, downloadCountImageView.frame.origin.y+1 , 70, label_font_size);
 }
 
 - (void)initAppInforWithData:(NSDictionary *)dataDic{

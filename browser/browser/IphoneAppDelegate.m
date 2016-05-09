@@ -122,7 +122,7 @@
 
 -(void)registerChangyanSDK
 {
-    [ChangyanSDK registerApp:@"cyslglANF" appKey:@"affe23359079b13a27e6d8b7b5eabaf2" redirectUrl:@"http://www.baby.com" anonymousAccessToken:@""];
+    [ChangyanSDK registerApp:@"cyslglANF" appKey:@"affe23359079b13a27e6d8b7b5eabaf2" redirectUrl:@"http://www.yybb18.com" anonymousAccessToken:@""];
     [ChangyanSDK setAllowSelfLogin:NO];
 //    [ChangyanSDK setLoginViewController:[[LoginViewController alloc] init]];
     

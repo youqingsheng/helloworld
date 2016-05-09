@@ -2134,7 +2134,9 @@ static MyServerRequestManager *serverRequestManager = nil;
 -(void)downloadCountToAPPID:(NSString *)appid version:(NSString *)appversion
 {
     
-//    http://123.56.228.139:81/client-log/idfa-record?device_type=iphone&breakout=y&ios_version=9.2&platform_version=1.0.0&platform_name=%E5%BA%94%E7%94%A8%E5%AE%9DA&idfa=lkklfjd908123jasldj&app_digital_id=912234766&download_time=1460005363&app_real_version=2.0.0
+//    http://backend.yybb18.com/client-log/idfa-record?device_type=iphone&breakout=y&ios_version=9.2&platform_version=1.0.0&platform_name=应用宝A&idfa=lkklfjd908123jasldj&app_digital_id=912234766&download_time=1460005363&app_real_version=2.0.0
+    
+//    http://123.56.228.139:81/client-log/idfa-record?device_type=iphone&breakout=y&ios_version=9.2&platform_version=1.0.0&platform_name=%E5%BA%94%E7%94%A8%E5%AE%9DA&idfa=lkklfjd908123jasldj&search_content=qq&search_time=1460005363&app_real_version=2.0.0
     
     NSString *adId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
@@ -2145,12 +2147,13 @@ static MyServerRequestManager *serverRequestManager = nil;
     // app build版本
 //    NSString *app_build = [infoDictionary objectForKey:@"CFBundleVersion"];
     
-    NSString *reqStr = [NSString stringWithFormat:@"http://123.56.228.139:81/client-log/idfa-record?device_type=%@&breakout=%@&ios_version=%@&platform_version=%@&platform_name=%@&idfa=%@&app_digital_id=%@&download_time=%ld&app_real_version=%@",
-                        [[FileUtil instance] getDeviceName],[[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"cydia://"]]?@"y":@"n",[NSString stringWithFormat:@"%@",[UIDevice currentDevice].systemVersion],app_Version,[self getDESString:app_Name],adId,appid,(long)[NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]].integerValue,appversion];
+    NSString *reqStr = [NSString stringWithFormat:@"http://backend.yybb18.com/client-log/idfa-record?device_type=%@&breakout=%@&ios_version=%@&platform_version=%@&platform_name=%@&idfa=%@&app_digital_id=%@&download_time=%ld&app_real_version=%@",
+                        [[FileUtil instance] getDeviceName],[[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"cydia://"]]?@"y":@"n",[NSString stringWithFormat:@"%@",[UIDevice currentDevice].systemVersion],app_Version,app_Name,adId,appid,(long)[NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]].integerValue,appversion];
     
     
+    NSString *str = [reqStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
-    NSURL *url = [NSURL URLWithString:reqStr];
+    NSURL *url = [NSURL URLWithString:str];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setTimeOutSeconds:10];
     [request setDelegate:self];

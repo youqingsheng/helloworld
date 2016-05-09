@@ -441,16 +441,16 @@
 #define UMENG_APPKEY @"550bc4eefd98c54cdc00007d" // 友盟appKey
 
 // 服务器请求地址
-#define TEST_URL  1  //测试 1；正式 0
+#define TEST_URL  0  //测试 1；正式 0
 #if (TEST_URL == 1)
 //#define HEAD_REQSTR @"http://192.168.110.41:81"
-#define HEAD_REQSTR @"http://123.56.228.139:83"
+#define HEAD_REQSTR @"http://inf.pre.yybb18.com"//@"http://123.56.228.139:83"
 #else
 //#define HEAD_REQSTR @"http://ftt.mysjzs.com"
-#define HEAD_REQSTR @"http://www.baby.com"
+#define HEAD_REQSTR @"http://inf.yybb18.com"//@"http://www.baby.com"
 #endif
 
-#define SHOW_REAL_VIEW_FLAG 1// [[[NSUserDefaults standardUserDefaults] objectForKey:@"SHOW_FLAG"] boolValue]//是否显示真实界面
+#define SHOW_REAL_VIEW_FLAG [[[NSUserDefaults standardUserDefaults] objectForKey:@"SHOW_FLAG"] boolValue]//是否显示真实界面
 #define HAS_CONNECTED_PC 1// [[[NSUserDefaults standardUserDefaults] objectForKey:@"hasconnectedpc"] boolValue]//是否连接过PC端激活(写入文件)
 #define DIRECTLY_GO_APPSTORE     [[[NSUserDefaults standardUserDefaults] objectForKey:@"directlygoappstore"] boolValue]//是否直接跳store
 

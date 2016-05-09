@@ -13,6 +13,7 @@
 #import "NSDictionary+noNIL.h"
 #import "AppStatusManage.h"
 #import <objc/runtime.h>
+#import "MyServerRequestManager.h"
 
 
 @interface SetDownloadButtonState () <BppDistriPlistManagerDelegate, UIAlertViewDelegate>{
@@ -144,13 +145,15 @@
     }
 
     [tmpDic setObjectNoNIL:[appInforDic objectForKey:@"appid"] forKey:@"appid"];
-    [tmpDic setObjectNoNIL:[appInforDic objectForKey:@"appversion"] forKey:@"appversion"];
+    [tmpDic setObjectNoNIL:[appInforDic objectForKey:@"displayversion"] forKey:@"appversion"];
     [tmpDic setObjectNoNIL:[appInforDic objectNoNILForKey:@"appminosver"] forKey:@"appminosver"];
     [tmpDic setObjectNoNIL:[appInforDic objectForKey:@"appicon"] forKey:@"appiconurl"];
     [tmpDic setObjectNoNIL:[appInforDic objectForKey:@"appname"] forKey:@"appname"];
     [tmpDic setObjectNoNIL:detailSoure forKey:@"dlfrom"];
     [tmpDic setObjectNoNIL:[appInforDic objectForKey:@"appprice"] forKey:@"appprice"];
     [tmpDic setObjectNoNIL:[appInforDic objectForKey:@"appdigitalid"] forKey:@"distriAppID"];
+    
+    [[MyServerRequestManager getManager] downloadCountToAPPID:appdigitalid version:[tmpDic objectForKey:@"appversion"]];
 
     
     if ([detailSoure hasPrefix:@"kyclient_unicomfreeflow_"]) {

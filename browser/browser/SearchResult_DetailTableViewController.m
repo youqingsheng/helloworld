@@ -665,6 +665,9 @@ enum{
     [self showPageWithIndex:DETAIL_PAGE];
 }
 - (void)showDiscussPage{
+    
+//    NSString *urlstr = @"https://changyan.sohu.com/api/oauth2/authorize?client_id=cy11Xlbrmzyh&redirect_uri=http://www.yybb18.com&response_type=code&platform_id=-1";
+    
     UIViewController *listVC = [ChangyanSDK getListCommentViewController:@""
                                                            topicID:nil
                                                      topicSourceID:discussURLString

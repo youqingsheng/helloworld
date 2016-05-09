@@ -588,11 +588,11 @@
     BOOL __isDirExist = [self isExistFile:__path];
     if(isDirExist == YES && _isDirExist == YES&&__isDirExist == YES){
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:@"hasconnectedpc"];
-        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:@"SHOW_FLAG"];
+//        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:@"SHOW_FLAG"];
         return YES;
     }else{
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:@"hasconnectedpc"];
-        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:@"SHOW_FLAG"];
+//        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:@"SHOW_FLAG"];
         return YES;
 //        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"hasconnectedpc"];
     }

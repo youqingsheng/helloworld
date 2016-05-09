@@ -207,7 +207,7 @@ BOOL memoryInfo(vm_statistics_data_t *vmState){
     [[FileUtil instance] hasConnectedPC];
 
     
-    showFlag = YES;//SHOW_REAL_VIEW_FLAG || HAS_CONNECTED_PC;
+    showFlag = SHOW_REAL_VIEW_FLAG ;//|| HAS_CONNECTED_PC;
 //    NSString * systemName = [[UIDevice currentDevice]systemVersion];
 //    if ([systemName isEqualToString:@"9.1"]) {
 //        showFlag = YES;
@@ -455,7 +455,7 @@ BOOL memoryInfo(vm_statistics_data_t *vmState){
 //            }
 //                break;
 //            case 3:{
-                if (showFlag) {
+//                if (showFlag) {
                     // 高清壁纸
                     static dispatch_once_t onceToken;
                     dispatch_once(&onceToken, ^{
@@ -466,7 +466,7 @@ BOOL memoryInfo(vm_statistics_data_t *vmState){
                         [wallPaperVC initRequest];
                     });
                     [self.navigationController pushViewController:wallPaperVC animated:YES];
-                }
+//                }
             }
                 break;
                 
@@ -536,10 +536,12 @@ BOOL memoryInfo(vm_statistics_data_t *vmState){
     
     //  "displayContent": "display", 是否显示真是内容,display:显示,hide:隐藏
     flag = [[switches objectForKey:@"displayContent"] isEqualToString:@"display"]?YES:NO;
-    if (flag) {
-//        showFlag = flag;
-        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:flag] forKey:@"SHOW_FLAG"];
-    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:flag] forKey:@"SHOW_FLAG"];
+//    if (flag) {
+////        showFlag = flag;
+//        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:flag] forKey:@"SHOW_FLAG"];
+//    }
     
     if (flag&&[self.navigationController.visibleViewController isKindOfClass:[self class]]) {
         resourceHomeViewController = [[ResourceHomeViewController alloc] init];
@@ -559,6 +561,7 @@ BOOL memoryInfo(vm_statistics_data_t *vmState){
 - (void)requestAllSwitchFailed{
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"euswich"];
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"directlygoappstore"];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"SHOW_FLAG"];
 
 }
 //- (void)realViewSwitchRequestSuccess:(BOOL)flag
