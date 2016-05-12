@@ -36,11 +36,11 @@
 }
 
 + (NSArray *)titles{
-    return @[@"微信好友", @"微信朋友圈", @"新浪微博"];
+    return @[@"微信好友", @"微信朋友圈"];//, @"新浪微博"];
 }
 
 + (NSArray *)images{
-    return @[@"sns_icon_22", @"sns_icon_23", @"sns_icon_1"];
+    return @[@"sns_icon_22", @"sns_icon_23"];//, @"sns_icon_1"];
 }
 
 - (void)show{
