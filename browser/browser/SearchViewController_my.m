@@ -276,6 +276,7 @@ typedef enum {
 
 - (void)searchKeyWord:(NSString *)keyWord
 {
+    [[MyServerRequestManager getManager] downloadCountToAPPID:keyWord version:@"" isSearch:YES];
     SearchListViewController *searchListVC = [[SearchListViewController alloc] initWithSearchKeyWord:keyWord];
     [self.navigationController pushViewController:searchListVC animated:YES];
 }

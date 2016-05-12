@@ -2133,10 +2133,24 @@ static MyServerRequestManager *serverRequestManager = nil;
 
 -(void)downloadCountToAPPID:(NSString *)appid version:(NSString *)appversion
 {
+    [self downloadCountToAPPID:appid version:appversion isSearch:NO];
+}
+
+-(void)downloadCountToAPPID:(NSString *)appid version:(NSString *)appversion isSearch:(BOOL)issearch
+{
+    //search test
+//    http://backend.pre.yybb18.com/client-log/search-content-record?device_type=iphone&breakout=y&ios_version=9.2&platform_version=1.0.0&platform_name=%E5%BA%94%E7%94%A8%E5%AE%9DA&idfa=lkklfjd908123jasldj&search_content=qq&search_time=1460005363&app_real_version=2.0.0
     
+    //search normal
+//    http://backend.yybb18.com/client-log/search-content-record?device_type=iphone&breakout=y&ios_version=9.2&platform_version=1.0.0&platform_name=%E5%BA%94%E7%94%A8%E5%AE%9DA&idfa=lkklfjd908123jasldj&search_content=qq&search_time=1460005363&app_real_version=2.0.0
+    
+    //download test
+//    http://backend.pre.yybb18.com/client-log/idfa-record?device_type=iphone&breakout=y&ios_version=9.2&platform_version=1.0.0&platform_name=应用宝A&idfa=lkklfjd908123jasldj&app_digital_id=912234766&download_time=1460005363&app_real_version=2.0.0
+    
+    //download normal
 //    http://backend.yybb18.com/client-log/idfa-record?device_type=iphone&breakout=y&ios_version=9.2&platform_version=1.0.0&platform_name=应用宝A&idfa=lkklfjd908123jasldj&app_digital_id=912234766&download_time=1460005363&app_real_version=2.0.0
     
-//    http://123.56.228.139:81/client-log/idfa-record?device_type=iphone&breakout=y&ios_version=9.2&platform_version=1.0.0&platform_name=%E5%BA%94%E7%94%A8%E5%AE%9DA&idfa=lkklfjd908123jasldj&search_content=qq&search_time=1460005363&app_real_version=2.0.0
+    NSString *str = nil;
     
     NSString *adId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
@@ -2144,14 +2158,28 @@ static MyServerRequestManager *serverRequestManager = nil;
     NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
     // app版本
     NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-    // app build版本
-//    NSString *app_build = [infoDictionary objectForKey:@"CFBundleVersion"];
     
-    NSString *reqStr = [NSString stringWithFormat:@"http://backend.yybb18.com/client-log/idfa-record?device_type=%@&breakout=%@&ios_version=%@&platform_version=%@&platform_name=%@&idfa=%@&app_digital_id=%@&download_time=%ld&app_real_version=%@",
-                        [[FileUtil instance] getDeviceName],[[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"cydia://"]]?@"y":@"n",[NSString stringWithFormat:@"%@",[UIDevice currentDevice].systemVersion],app_Version,app_Name,adId,appid,(long)[NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]].integerValue,appversion];
+    if (issearch) {
+        NSString *reqStr = [NSString stringWithFormat:@"%@/client-log/search-content-record?device_type=%@&breakout=%@&ios_version=%@&platform_version=%@&platform_name=%@&idfa=%@&search_content=%@&search_time=%ld&app_real_version=%@",HEAD_COUNT,
+                            [[[FileUtil instance] getDeviceName] stringByReplacingOccurrencesOfString:@" " withString:@""],[[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"cydia://"]]?@"y":@"n",[NSString stringWithFormat:@"%@",[UIDevice currentDevice].systemVersion],app_Version,app_Name,adId,appid,(long)[NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]].integerValue,app_Version];
+        
+        
+        str = [reqStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    }
+    else{
+        // app build版本
+        //    NSString *app_build = [infoDictionary objectForKey:@"CFBundleVersion"];
+        
+        NSString *reqStr = [NSString stringWithFormat:@"%@/client-log/idfa-record?device_type=%@&breakout=%@&ios_version=%@&platform_version=%@&platform_name=%@&idfa=%@&app_digital_id=%@&download_time=%ld&app_real_version=%@",HEAD_COUNT,
+                            [[[FileUtil instance] getDeviceName] stringByReplacingOccurrencesOfString:@" " withString:@""],[[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"cydia://"]]?@"y":@"n",[NSString stringWithFormat:@"%@",[UIDevice currentDevice].systemVersion],app_Version,app_Name,adId,appid,(long)[NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]].integerValue,appversion];
+        
+        
+        str = [reqStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    }
     
-    
-    NSString *str = [reqStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    if (!str) {
+        return;
+    }
     
     NSURL *url = [NSURL URLWithString:str];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];

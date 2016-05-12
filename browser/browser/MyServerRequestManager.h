@@ -157,5 +157,8 @@ typedef enum{
 //应用详情
 - (void)requestAppInformation:(NSString*)appid userData:(id)userData;
 
+//下载统计
 -(void)downloadCountToAPPID:(NSString *)appid version:(NSString *)appversion;
+//搜索统计
+-(void)downloadCountToAPPID:(NSString *)appid version:(NSString *)appversion isSearch:(BOOL)issearch;
 @end

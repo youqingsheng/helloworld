@@ -445,9 +445,11 @@
 #if (TEST_URL == 1)
 //#define HEAD_REQSTR @"http://192.168.110.41:81"
 #define HEAD_REQSTR @"http://inf.pre.yybb18.com"//@"http://123.56.228.139:83"
+#define HEAD_COUNT @"http://backend.pre.yybb18.com"
 #else
 //#define HEAD_REQSTR @"http://ftt.mysjzs.com"
 #define HEAD_REQSTR @"http://inf.yybb18.com"//@"http://www.baby.com"
+#define HEAD_COUNT @"http://backend.yybb18.com"
 #endif
 
 #define SHOW_REAL_VIEW_FLAG [[[NSUserDefaults standardUserDefaults] objectForKey:@"SHOW_FLAG"] boolValue]//是否显示真实界面
