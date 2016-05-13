@@ -537,11 +537,11 @@ BOOL memoryInfo(vm_statistics_data_t *vmState){
     //  "displayContent": "display", 是否显示真是内容,display:显示,hide:隐藏
     flag = [[switches objectForKey:@"displayContent"] isEqualToString:@"display"]?YES:NO;
     
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:flag] forKey:@"SHOW_FLAG"];
-//    if (flag) {
-////        showFlag = flag;
-//        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:flag] forKey:@"SHOW_FLAG"];
-//    }
+//    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:flag] forKey:@"SHOW_FLAG"];
+    if (flag) {
+//        showFlag = flag;
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:flag] forKey:@"SHOW_FLAG"];
+    }
     
     if (flag&&[self.navigationController.visibleViewController isKindOfClass:[self class]]) {
         resourceHomeViewController = [[ResourceHomeViewController alloc] init];
@@ -561,7 +561,7 @@ BOOL memoryInfo(vm_statistics_data_t *vmState){
 - (void)requestAllSwitchFailed{
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"euswich"];
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"directlygoappstore"];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"SHOW_FLAG"];
+//    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"SHOW_FLAG"];
 
 }
 //- (void)realViewSwitchRequestSuccess:(BOOL)flag
