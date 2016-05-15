@@ -3589,6 +3589,7 @@
 				LastUpgradeCheck = 0630;
 				TargetAttributes = {
 					B2A0BF9215FF11A200DA4D02 = {
+						DevelopmentTeam = KK32UUJWCV;
 						SystemCapabilities = {
 							com.apple.InterAppAudio = {
 								enabled = 0;
@@ -4433,11 +4434,11 @@
 					"-lxml2",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yyb.yybtest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yyb.yybb;
 				PRODUCT_MODULE_NAME = "应用宝贝";
 				PRODUCT_NAME = "应用宝贝";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "04b0fc43-0548-41c6-bb47-347290a7306d";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "04b0fc43-0548-41c6-bb47-347290a7306d";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "browser/IPhone/HomePageControls/Find/browser-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -4457,8 +4458,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: weiwei du (AHW25ZG2Z5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: weiwei du (AHW25ZG2Z5)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: weiwei du (KK32UUJWCV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: weiwei du (KK32UUJWCV)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4491,11 +4492,11 @@
 					"-lxml2",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yyb.yybtest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yyb.yybb;
 				PRODUCT_MODULE_NAME = "应用宝贝";
 				PRODUCT_NAME = "应用宝贝";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "7bd7af35-758d-4f35-a672-af1b7df3307b";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7bd7af35-758d-4f35-a672-af1b7df3307b";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "browser/IPhone/HomePageControls/Find/browser-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;

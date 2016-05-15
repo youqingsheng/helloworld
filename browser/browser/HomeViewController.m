@@ -539,7 +539,14 @@ BOOL memoryInfo(vm_statistics_data_t *vmState){
     
 //    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:flag] forKey:@"SHOW_FLAG"];
     if (flag) {
-//        showFlag = flag;
+        showFlag = flag;
+        if (myCollectionView) {
+            HomeHeadCell *headCell = (HomeHeadCell *)[myCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+            if (headCell) {
+                [headCell.shopBtn addTarget:self action:@selector(pushBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+                headCell.shopBtn.hidden = NO;
+            }
+        }
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:flag] forKey:@"SHOW_FLAG"];
     }
     

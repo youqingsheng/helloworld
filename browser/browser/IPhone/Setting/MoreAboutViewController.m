@@ -135,7 +135,8 @@
 //    discribeLabel.text = @"免费/免越狱\n随时随地  下载海量苹果APP";
     
     copyrightImageView = [[UIImageView alloc] init];
-    SET_IMAGE(copyrightImageView.image, @"more_about_copyright.png");
+    copyrightImageView.hidden = YES;
+//    SET_IMAGE(copyrightImageView.image, @"more_about_copyright.png");
     
     // addsubView
     [self.view addSubview:iconImageView];
